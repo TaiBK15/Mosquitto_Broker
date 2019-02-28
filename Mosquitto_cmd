@@ -1,0 +1,44 @@
+1. Local broker
+- PUBLISH:
+   >>mosquitto_pub -m "message mqtt" -t "test" -u "local_broker" -P "123456"
+- SUBSCRIBE
+   >>mosquitto_sub -v -t "test" -u "local_broker" -P "123456" 
+
+2. Remote broker
+- PUBLISH:
+   >>mosquitto_pub -h "###.cloudmqtt.com" -p "#####" -t "remote_broker" -u "#####" -P "######" -m "hello"
+- SUBSCRIBE:
+   >>mosquitto_sub -h "###.cloudmqtt.com" -p "#####" -t "End_node1/temp/pub" -u "######" -P "#######"
+
+3. Run mosquitto broker local
+Type on terminal:
+   >>mosquitto
+- To watch log on processing mosquitto
+   >>mosquitto -v
+If only using "mosquitto", it will run default config that means
+running file default.conf
+
+4. Running other config file
+   >>mosquitto -c /etc/mosquitto/conf.d/cloudmqtt.conf -v 
+//to watch log
+
+*******************************************************************
+STATUS:
+- Create successfully MQTT bridge between local broker (Mosquitto broker)
+and remote broker (CloudMQTT). 
+- Once send message from cloudmqtt into Mosquitto broker, It will publish automatically
+that message with the same topic to Mqtt client subscribing local broker.
+- Transfer bi-direction successfully but when local client publish message, client subscribe message display twice! Because Mosquitto broker receives message and publish CloudMQTT, CloudMQTT publish that message back Mosquitto broker.
+
+NOTE:
+1/ In file .conf:
+local_clientid indicates for remote broker - CloudMQTT
+remote_clientid indicate for local broker - Mosquitto broker
+
+2/When start system and run command 'mosquitto', then getting "Error: address already in use".
+The reason that there are process running mosquitto before that means Mosquitto Broker is running. Perhaps because of file /etc/init.d/mosquitto, this file will start mosquitto automatically when system already boot up, run mosquitto.conf that means 2 file default.conf and cloudmqtt.conf. Therefor, when system boots up, we can use MQTT bridge.
+- To watch the process running Mosquitto:
+   >>ps -aux | grep mosqui*
+- To stop Mosquitto broker running and close port listenning:
+   >>sudo systemctl stop mosquitto
+
