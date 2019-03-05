@@ -1,0 +1,38 @@
+=======================================================
+	-----------INSTALL MOSQUITTO------------
+			*****
+1.Update the signing key for apt-get
+To use the new repository you should first import the repository
+package signing key follow the below comman, the wget command is 
+used to download single file and stores in a current directory.
+Command:
+  >>sudo wget http://repo.mosquitto.org/debian/mosquitto-repo.gpg.key
+
+2.add this key to apt-get
+  >>sudo apt-key add mosquitto-repo.gpg.key
+
+3.To add the repository, first go to the folder containing the repository 
+lists for apt-get:
+  >>cd /etc/apt/sources.list.d/
+
+4.Download the repository list file for Mosquitto:
+Before downloading, we can check OS that Raspberry pi is running (Wheezy, Jessie, Stretch)
+  >>cat /etc/os-release
+Download:
+  >>sudo wget http://repo.mosquitto.org/debian/mosquitto-stretch.list
+
+5.Update:
+  >>sudo apt-get update
+if not success, try this previous:
+  >>sudo apt-get upgrade
+
+6.Install Mosquitto
+  >>sudo apt-get install mosquitto mosquitto-clients
+
+
+*****************************************************
+REFERENCE WEB:
+1/ https://www.switchdoc.com/2018/02/tutorial-installing-and-testing-mosquitto-mqtt-on-raspberry-pi/
+2/ https://theembeddedlab.com/tutorials/install-mosquitto-on-a-raspberry-pi/
+3/ https://www.instructables.com/id/Installing-MQTT-BrokerMosquitto-on-Raspberry-Pi/
+

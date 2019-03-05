@@ -41,4 +41,7 @@ The reason that there are process running mosquitto before that means Mosquitto 
    >>ps -aux | grep mosqui*
 - To stop Mosquitto broker running and close port listenning:
    >>sudo systemctl stop mosquitto
+or:
+   >>sudo /etc/init.d/mosquitto stop
+
 
