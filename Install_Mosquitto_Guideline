@@ -1,6 +1,6 @@
-=======================================================
-	-----------INSTALL MOSQUITTO------------
-			*****
+======================================================================
+	-----------INSTALL MOSQUITTO ON RASPBERRY PI------------
+				*****
 1.Update the signing key for apt-get
 To use the new repository you should first import the repository
 package signing key follow the below comman, the wget command is 

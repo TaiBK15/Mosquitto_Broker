@@ -22,6 +22,15 @@ running file default.conf
    >>mosquitto -c /etc/mosquitto/conf.d/cloudmqtt.conf -v 
 //to watch log
 
+5.Create Username, Password for MQTT broker:
+   >>sudo mosquitto_passwd -c /etc/mosquitto/passwd 'username'
+-Then type password into terminal
+-Pointing to default config file:
+   >>sudo nano /etc/mosquitto/conf.d/default.conf
+-Copy and paste:
+   allow_anonymous false
+   password_file /etc/mosquitto/passwd
+
 *******************************************************************
 STATUS:
 - Create successfully MQTT bridge between local broker (Mosquitto broker)
