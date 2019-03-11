@@ -29,6 +29,13 @@ if not success, try this previous:
 6.Install Mosquitto
   >>sudo apt-get install mosquitto mosquitto-clients
 
+7.Prevent remote broker from publishing loop back to local broker (config MQTT bridge)
+Go to file config MQTT bridge: /etc/mosquitto/conf.fd/mainserver.conf
+Set "try_private true"
+Because that indicates to the remote broker that it is a bridge not an
+normal client. That means remote broker not to publish back to local broker.
+
+
 
 *****************************************************
 REFERENCE WEB:
